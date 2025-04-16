@@ -1,23 +1,25 @@
+# James Kim - Data Normalization Take-home Exercise
+
 ## Introduction
 
 Note: Please use your IDE and open this file in Preview for readability and formatting. Eg. VSCode -> Right click README.md tab -> Open Preview
 
-Hello CSET Team - my name is James, and I'm a software engineer at WillowTree. Thank you for the opportunity to partake in this take-home project!
-I chose to complete Option 1: Data Normalization exercise. The second option seemed simpler, but I've never looked much into normalization of data
+Hello CSET Team - my name is James, and I'm a software engineer at **WillowTree**. Thank you for the opportunity to partake in this take-home project!
+I chose to complete **Option 1: Data Normalization** exercise. The second option seemed simpler, but I've never looked much into normalization of data
 in my professional experience so I decided to give it a go. It took a little bit of time to do my due diligence on some common string normalization
 techniques and weighing out the pros and cons, but it was a fun exercise to try out that was more data-centric.
 
 ## Technologies Used
 
-When I first read the prompt, I was attracted to writing a simple Python script since it would've been a bit less overhead for configuration setup compared to the technologies that I've been using recently with - such as Node.js or .NET. However, I felt more comfortable with the JavaScript syntax so I decided to use Node. I apologize if you do not have Node.js installed already to evaluate this script.
+When I first read the prompt, I was attracted to writing a simple Python script since it would've been a bit less overhead for configuration setup compared to the technologies that I've been using recently with - such as **Node.js** or **.NET**. However, I felt more comfortable with the JavaScript syntax so I decided to use Node. I apologize if you do not have Node.js installed already to evaluate this script.
 
-Packages:
+#### Packages:
 
-[csv-writer](https://www.npmjs.com/package/csv-writer) - for creating/writing csv files
+- [csv-writer](https://www.npmjs.com/package/csv-writer) - for creating/writing csv files
 
-[jaro-winkler](https://www.npmjs.com/package/jaro-winkler) - for testing Jaro-Winkler algorithm
+- [jaro-winkler](https://www.npmjs.com/package/jaro-winkler) - for testing Jaro-Winkler algorithm
 
-[jest](https://www.npmjs.com/package/jest) - for unit testing
+- [jest](https://www.npmjs.com/package/jest) - for unit testing
 
 ## The Approach
 
@@ -29,18 +31,32 @@ Upon doing some research, I came across the Levenshtein Distance algorithm (most
 
 Here's a basic [explanation](https://srinivas-kulkarni.medium.com/jaro-winkler-vs-levenshtein-distance-2eab21832fd6) of both of the algorithms:
 
-Levenshtein Distance: String metric for measuring the difference between two sequences. Between two strings, we count the minimum number of single char edits, which includes deletion, insertion, substitution, required to change one string into the other. Then we do
+**Levenshtein Distance**: String metric for measuring the difference between two sequences. Between two strings, we count the minimum number of single char edits, which includes deletion, insertion, substitution, required to change one string into the other. Then we do
 1 - (LD value) / (max length of two strings) to get the similarity value.
 
-Jaro-Winkler: String metric for measuring characters between two sequences in common, being no more than half the length of the longest string. It also takes into account of consideration for transpositions (char movements). The calculation is a bit more complex, but
+**Jaro-Winkler**: String metric for measuring characters between two sequences in common, being no more than half the length of the longest string. It also takes into account of consideration for transpositions (char movements). The calculation is a bit more complex, but
 the idea of similarity value is similar to the Levenshtein distance algorithm.
 
-I decided to try both algorithms to see which method would work best with affiliated author strings. For the Levenshtein Distance algorithm, I implemented my own JavaScript function similar to [this](https://www.30secondsofcode.org/js/s/levenshtein-distance/) algorithm, and tried using [this](https://www.npmjs.com/package/jaro-winkler) npm package for the Jaro-Winkler algorithm. With the given MIT affiliation examples from the prompt, the results varied. Leveraging JUST these algorithms along with the caching method, the Levenshtein Distance formula looked more appealing to me, as it felt like it was just strict enough to distinguish two strings that should seem like they should map to two different normalized strings, whereas Jaro-Winkler seemed more forgiving with the same threshold values set and better for shorter strings. For example, for a string like `MIT`, Jaro-Winkler would be good at finding similarity to a string like `mass inst of tech`, compared to Levenshtein Distance. Another example - I would personally think that `Massachusetts Institute of Technology Haystack Observatory` should be separate from `Massachusettes Institute of Technology, Cambridge, MA, USA`, so I would lean towards the Levenshtein distance algorithm. Of course, the threshold values can be adjusted and to be more forgiving or more strict, as well as we can go back and forth arguing whether or not one algorithm is better than the other for a bigger set of data. Given around 2-5 hours to complete this exercise, I believe this approach may be suitable for us.
+I decided to try both algorithms to see which method would work best with affiliated author strings. For the Levenshtein Distance algorithm, I implemented my own JavaScript function similar to [this](https://www.30secondsofcode.org/js/s/levenshtein-distance/) algorithm, and tried using [this](https://www.npmjs.com/package/jaro-winkler) npm package for the Jaro-Winkler algorithm. With the given MIT affiliation examples from the prompt, the results varied. Leveraging JUST these algorithms along with the caching method, the Levenshtein Distance formula looked more appealing to me, as it felt like it was just strict enough to distinguish two strings that should seem like they should map to two different normalized strings, whereas Jaro-Winkler seemed more forgiving with the same threshold values set and better for shorter strings. For example, for a string like `MIT`, Jaro-Winkler would be good at finding similarity to a string like `mass inst of tech`, compared to Levenshtein Distance. Another example - I would personally think that `Massachusetts Institute of Technology Haystack Observatory` should be separate from `Massachusettes Institute of Technology, Cambridge, MA, USA`, so I would lean towards the Levenshtein distance algorithm.
 
 I did, however, add some options to the program to allow a little bit more exactness in the functionality.
 
 There is a function in `utils.js` called `addNormalizationMapping`, which can be used to drastically improve mappings by manually mapping things like known acronyms for institutes, short name versions, etc. If these values are added prior to a larger data set input,
-the caching method would work far better.
+the dynamic caching method would work far better since we already have known set of data to refer to.
+
+### Let's wrap up and summarize how this program works, step by step:
+
+1. Read user arguments, catch usage errors.
+2. Create CSV Writer for output file w/ two columns - `original_affiliation` and `normalized_affiliation`.
+3. Read and parse JSONL data to turn into JSON objects.
+4. Normalize author affiliations from the JSON objects using dynamic caching
+5. Create a map for original strings and normalized strings.
+6. Project the map to the output CSV file.
+7. Print the mapping into the console for view.
+
+### Conclusion
+
+Overall, there are improvements that can be made with more time and data to test with. One improvement that I can think of is being able to format the normalized versions of the original affiliated strings when creating the output csv file, as it would be more readable applicable for a real-world use case with a database. Of course, the threshold values can be adjusted to be more forgiving or more strict, as well as we can go back and forth arguing whether or not one algorithm is better than the other for a bigger set of data. Given around 4-5 hours to complete this exercise, I believe this approach may be suitable for us. This was a fun exercise. Thank you!
 
 ## How to Run the Script
 
@@ -48,8 +64,7 @@ If you do not have Node.js installed, please download through the [Node.js websi
 
 1. **Open Terminal/Command Prompt - Skip if you are familiar with running scripts!**
 
-   - On Windows: Press Windows + R, type "cmd" and press Enter
-   - On Mac: Press Command + Space, type "Terminal" and press Enter
+   - Open terminal
 
 2. **Navigate to the Project Folder**
 
@@ -66,7 +81,7 @@ If you do not have Node.js installed, please download through the [Node.js websi
 
 4. **Prepare Your Input File**
 
-   - Make sure your input file is in JSONL format (each line is a JSON object).
+   - Make sure your input file is in **JSONL format** (each line is a JSON object).
    - Place your input file in the same folder as the script
    - FYI - `examplInput.jsonl` exists in the directory for use. I used this file to test my script, so please refer to this for reference!
 
@@ -84,9 +99,9 @@ If you do not have Node.js installed, please download through the [Node.js websi
    node index.js yourInputFile.jsonl output.csv 0.8
    ```
 
-   - The threshold is a number between 0 and 1 (default is 0.8)
-   - Higher numbers (closer to 1) mean stricter matching
-   - Lower numbers (closer to 0) mean more lenient matching
+   - The threshold is a number between 0 and 1 (default is 0.7)
+   - **Higher decimal** (closer to 1) stricter matching
+   - **Lower decimal** (closer to 0) more lenient matching
 
 6. **Check the Results**
    - After running the script, you'll find a new csv file in the same folder
@@ -94,25 +109,17 @@ If you do not have Node.js installed, please download through the [Node.js websi
      - `original_affiliation`: The original text
      - `normalized_affiliation`: The normalized version
 
-**Example**
-
-If you have a file named `data.jsonl` and want to create `results.csv` with a threshold of 0.9:
-
-```
-node index.js data.jsonl results.csv 0.9
-```
-
-**To run the unit tests**
+### To run the unit tests
 
 ```
 npm run test
 ```
 
-## Troubleshooting
+### Troubleshooting
 
 If you encounter any errors:
 
-1. Make sure Node.js is installed correctly
+1. Make sure **Node.js** is installed correctly
 2. Ensure you're in the correct folder
 3. Check that your input file exists and is in the correct format
 4. Verify that you have write permissions in the folder

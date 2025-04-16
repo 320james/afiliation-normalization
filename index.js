@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {
   normalizeAffiliation,
-  addNormalizationMapping,
+  // addNormalizationMapping,
   getNormalizationCache,
 } from './utils.js';
 import { createObjectCsvWriter } from 'csv-writer';
@@ -23,7 +23,6 @@ if (threshold && (threshold < 0 || threshold > 1)) {
 }
 
 // If we want to drastically improve mappings, we can add mappings manually.
-// // Add some known mappings (optional)
 // addNormalizationMapping(
 //   'Mass. Inst. of Tech',
 //   'massachusetts institute of technology'
@@ -43,14 +42,14 @@ const csvWriter = createObjectCsvWriter({
 });
 
 try {
-  // Read the JSONL file
+  // Read the JSONL data
   const jsonlContent = fs.readFileSync(inputFile, 'utf8');
 
-  // Split by newlines and parse each line as JSON
+  // Parse lines
   const lines = jsonlContent.split('\n').filter((line) => line.trim() !== '');
   const jsonObjects = [];
 
-  // Parse each line as JSON
+  // Parse each line as json obj
   for (let i = 0; i < lines.length; i++) {
     try {
       const line = lines[i];
@@ -64,6 +63,7 @@ try {
     }
   }
 
+  // Normalize
   const records = jsonObjects.map((obj) => {
     const originalAffiliation = obj.author_affiliation_string;
     const normalizedAffiliation = normalizeAffiliation(
@@ -82,6 +82,7 @@ try {
     `Normalized author affiliations from ${inputFile} to ${outputFile}`
   );
 
+  // Print mappings
   console.log('\nNormalization mappings:');
   const cache = getNormalizationCache();
   for (const [original, normalized] of cache) {

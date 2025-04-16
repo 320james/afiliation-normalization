@@ -1,4 +1,4 @@
-import distance from 'jaro-winkler';
+// import distance from 'jaro-winkler';
 
 // Cache to store normalized versions of previously seen affiliations
 const normalizationCache = new Map();
@@ -30,7 +30,7 @@ export function levenshteinDistance(str1, str2) {
   return 1 - matrix[len1][len2] / maxLength;
 }
 
-// Basic string normalization removing special characters and extra spaces. Not sure if we should remove all spaces?
+// Basic string normalization removing special characters and extra spaces w/ regex. Not sure if we should remove all spaces??
 export function normalizeString(str) {
   return str
     .toLowerCase()
@@ -40,7 +40,7 @@ export function normalizeString(str) {
 }
 
 // Threshold is the minimum similarity score to consider a match
-// I set the default to 0.8, but this can be adjusted
+// I set the default to 0.7, but this can be adjusted
 // One downside of this way of normalizing data is that it depends on the order of data entry of what each
 // string will normalize to. For example, if "Massachusetts Institute of Technology, Cambridge, MA, USA",
 // is entered first, and then "Massachusetts Institute of Technology" is entered second,
@@ -54,7 +54,7 @@ export function normalizeAffiliation(affiliation, threshold = 0.7) {
 
   // Check cache for similar strings
   for (const [cached, normalizedVersion] of normalizationCache) {
-    // const similarity = distance(normalized, cached); // Jaro-Winkler distance.
+    // const similarity = distance(normalized, cached); // Jaro-Winkler distance if we would use this instead.
     const similarity = levenshteinDistance(normalized, cached);
     if (similarity >= threshold) {
       return normalizedVersion;
@@ -74,7 +74,6 @@ export function addNormalizationMapping(original, normalized) {
   normalizationCache.set(normOriginal, normNormalized);
 }
 
-// Function to get the current cache (for debugging)
 export function getNormalizationCache() {
   return normalizationCache;
 }

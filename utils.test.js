@@ -53,102 +53,77 @@ describe('String Normalization', () => {
     });
   });
 
-  //   describe('Levenshtein Distance', () => {
-  //     test('should return high similarity for similar strings', () => {
-  //       expect(levenshteinDistance('hello', 'helloo')).toBeGreaterThan(0.8);
-  //       expect(levenshteinDistance('hello', 'hallo')).toBeGreaterThan(0.8);
-  //     });
+  describe('Levenshtein Distance', () => {
+    test('should return high similarity for similar strings', () => {
+      expect(levenshteinDistance('hello', 'helloo')).toBeGreaterThan(0.7);
+      expect(levenshteinDistance('hello', 'hallo')).toBeGreaterThan(0.7);
+    });
 
-  //     test('should return low similarity for different strings', () => {
-  //       expect(levenshteinDistance('hello', 'world')).toBeLessThan(0.8);
-  //       expect(levenshteinDistance('abc', 'xyz')).toBeLessThan(0.8);
-  //     });
+    test('should return low similarity for different strings', () => {
+      expect(levenshteinDistance('hello', 'world')).toBeLessThan(0.8);
+      expect(levenshteinDistance('abc', 'xyz')).toBeLessThan(0.8);
+    });
 
-  //     test('should handle empty strings', () => {
-  //       expect(levenshteinDistance('', 'hello')).toBeLessThan(8);
-  //       expect(levenshteinDistance('hello', '')).toBeLessThan(8);
-  //     });
-  //   });
+    test('should handle empty strings', () => {
+      expect(levenshteinDistance('', 'hello')).toBeLessThan(8);
+      expect(levenshteinDistance('hello', '')).toBeLessThan(8);
+    });
+  });
 
-  //   describe('normalizeAffiliation', () => {
-  //     test('should use cache for similar strings', () => {
-  //       addNormalizationMapping(
-  //         'Mass. Inst. of Tech',
-  //         'massachusetts institute of technology'
-  //       );
+  describe('normalizeAffiliation', () => {
+    test('should use cache for similar strings', () => {
+      addNormalizationMapping(
+        'Mass. Inst. of Tech',
+        'massachusetts institute of technology'
+      );
 
-  //       expect(normalizeAffiliation('Mass. Inst. of Tech')).toBe(
-  //         'massachusetts institute of technology'
-  //       );
-  //       expect(normalizeAffiliation('mass inst of tech')).toBe(
-  //         'massachusetts institute of technology'
-  //       );
-  //       expect(normalizeAffiliation('Mass Inst of Technology')).toBe(
-  //         'massachusetts institute of technology'
-  //       );
-  //     });
+      expect(normalizeAffiliation('Mass. Inst. of Tech')).toBe(
+        'massachusetts institute of technology'
+      );
+      expect(normalizeAffiliation('mass inst of tech')).toBe(
+        'massachusetts institute of technology'
+      );
+      expect(normalizeAffiliation('Mass Inst of Technology')).toBe(
+        'massachusetts institute of technology'
+      );
+    });
 
-  //     test('should handle new strings', () => {
-  //       const result = normalizeAffiliation('New University');
-  //       expect(result).toBe('new university');
+    test('should handle new strings', () => {
+      const result = normalizeAffiliation('New University');
+      expect(result).toBe('new university');
 
-  //       const cache = getNormalizationCache();
-  //       expect(cache.has('new university')).toBe(true);
-  //     });
+      const cache = getNormalizationCache();
+      expect(cache.has('new university')).toBe(true);
+    });
 
-  //     test('should respect similarity threshold', () => {
-  //       addNormalizationMapping('MIT', 'massachusetts institute of technology');
+    test('should handle edge cases', () => {
+      expect(normalizeAffiliation('')).toBe('');
+      expect(normalizeAffiliation(null)).toBe('');
+      expect(normalizeAffiliation(undefined)).toBe('');
+    });
+  });
 
-  //       // With default threshold (0.8)
-  //       expect(normalizeAffiliation('MIT')).toBe(
-  //         'massachusetts institute of technology'
-  //       );
+  describe('addNormalizationMapping', () => {
+    test('should add mappings correctly', () => {
+      addNormalizationMapping('MIT', 'massachusetts institute of technology');
 
-  //       // With higher threshold
-  //       expect(normalizeAffiliation('MIT', 0.9)).toBe('mit');
-  //     });
+      const cache = getNormalizationCache();
+      expect(cache.get('mit')).toBe('massachusetts institute of technology');
+    });
 
-  //     test('should handle edge cases', () => {
-  //       expect(normalizeAffiliation('')).toBe('');
-  //       expect(normalizeAffiliation(null)).toBe('');
-  //       expect(normalizeAffiliation(undefined)).toBe('');
-  //     });
-  //   });
+    test('should normalize both input and output', () => {
+      addNormalizationMapping('M.I.T.', 'Mass. Inst. of Tech');
 
-  //   describe('addNormalizationMapping', () => {
-  //     test('should add mappings correctly', () => {
-  //       addNormalizationMapping('MIT', 'massachusetts institute of technology');
+      const cache = getNormalizationCache();
+      expect(cache.get('m i t')).toBe('mass inst of tech');
+    });
 
-  //       const cache = getNormalizationCache();
-  //       expect(cache.get('mit')).toBe('massachusetts institute of technology');
-  //     });
+    test('should overwrite existing mappings', () => {
+      addNormalizationMapping('MIT', 'first mapping');
+      addNormalizationMapping('MIT', 'second mapping');
 
-  //     test('should normalize both input and output', () => {
-  //       addNormalizationMapping('M.I.T.', 'Mass. Inst. of Tech');
-
-  //       const cache = getNormalizationCache();
-  //       expect(cache.get('m i t')).toBe('mass inst of tech');
-  //     });
-
-  //     test('should overwrite existing mappings', () => {
-  //       addNormalizationMapping('MIT', 'first mapping');
-  //       addNormalizationMapping('MIT', 'second mapping');
-
-  //       const cache = getNormalizationCache();
-  //       expect(cache.get('mit')).toBe('second mapping');
-  //     });
-  //   });
-
-  //   describe('getNormalizationCache', () => {
-  //     test('should return the cache object', () => {
-  //       const cache = getNormalizationCache();
-  //       expect(cache instanceof Map).toBe(true);
-  //     });
-
-  //     test('should allow cache modification', () => {
-  //       const cache = getNormalizationCache();
-  //       cache.set('test', 'value');
-  //       expect(cache.get('test')).toBe('value');
-  //     });
-  //   });
+      const cache = getNormalizationCache();
+      expect(cache.get('mit')).toBe('second mapping');
+    });
+  });
 });
