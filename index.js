@@ -82,12 +82,18 @@ try {
     `Normalized author affiliations from ${inputFile} to ${outputFile}`
   );
 
-  // Print mappings
-  console.log('\nNormalization mappings:');
+  // Display normalization statistics
+  console.log('\nNormalization Statistics:');
   const cache = getNormalizationCache();
-  for (const [original, normalized] of cache) {
-    console.log(`${original} -> ${normalized}`);
-  }
+
+  console.log(`Number of original strings: ${records.length}`);
+  console.log(`Number of normalized values: ${cache.size}`);
+  console.log(
+    `Estimated reduction ratio: ${(
+      (1 - cache.size / records.length) *
+      100
+    ).toFixed(2)}%`
+  );
 } catch (error) {
   console.error('Error:', error.message);
   process.exit(1);

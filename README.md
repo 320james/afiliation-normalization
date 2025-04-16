@@ -52,7 +52,7 @@ the dynamic caching method would work far better since we already have known set
 4. Normalize author affiliations from the JSON objects using dynamic caching
 5. Create a map for original strings and normalized strings.
 6. Project the map to the output CSV file.
-7. Print the mapping into the console for view.
+7. Print statistics about the normalization results.
 
 ### Conclusion
 
@@ -90,13 +90,13 @@ If you do not have Node.js installed, please download through the [Node.js websi
    - Basic usage (without threshold):
 
    ```
-   node index.js yourInputFile.jsonl output.csv
+   node index.js exampleInput.jsonl output.csv
    ```
 
    - With threshold between 0.0 - 1.0 (optional):
 
    ```
-   node index.js yourInputFile.jsonl output.csv 0.8
+   node index.js exampleInput.jsonl output.csv 0.8
    ```
 
    - The threshold is a number between 0 and 1 (default is 0.7)
