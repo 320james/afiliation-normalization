@@ -63,9 +63,11 @@ try {
     }
   }
 
+  console.log('Processing...');
+
   // Normalize
-  const records = jsonObjects.map((obj) => {
-    const originalAffiliation = obj.author_affiliation_string;
+  const records = jsonObjects.map(({ author_affiliation }) => {
+    const originalAffiliation = author_affiliation;
     const normalizedAffiliation = normalizeAffiliation(
       originalAffiliation,
       threshold
@@ -83,7 +85,7 @@ try {
   );
 
   // Display normalization statistics
-  console.log('\nNormalization Statistics:');
+  console.log('\nSome normalization stats:');
   const cache = getNormalizationCache();
 
   console.log(`Number of original strings: ${records.length}`);

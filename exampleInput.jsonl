@@ -1,28 +1,29 @@
-{"paper_id": "Research Paper 1", "publication_date": "2020-01-01", "author_affiliation_string": "Mass. Inst. of Tech", "paper_subject_labels": ["label_1", "label_2"]}
-{"paper_id": "Research Paper 2", "publication_date": "2020-01-02", "author_affiliation_string": "Mass. Inst. of Technology", "paper_subject_labels": ["label_3", "label_4"]}
-{"paper_id": "Research Paper 3", "publication_date": "2020-01-03", "author_affiliation_string": "Massachusettes Institute of Technology, Cambridge, MA, USA", "paper_subject_labels": ["label_5", "label_6"]}
-{"paper_id": "Research Paper 4", "publication_date": "2020-01-04", "author_affiliation_string": "Massachusetts Institute of Technolgy", "paper_subject_labels": ["label_7", "label_8"]}
-{"paper_id": "Research Paper 5", "publication_date": "2020-01-05", "author_affiliation_string": "Massachusetts Institute of Technology Haystack Observatory", "paper_subject_labels": ["label_9", "label_10"]}
-{"paper_id": "Research Paper 6", "publication_date": "2020-01-06", "author_affiliation_string": "Massachusetts Institute of Technology Lincoln Laboratory", "paper_subject_labels": ["label_11", "label_12"]}
-{"paper_id": "Research Paper 7", "publication_date": "2020-01-07", "author_affiliation_string": "Massachusetts Institute of Technology USA", "paper_subject_labels": ["label_13", "label_14"]}
-{"paper_id": "Research Paper 8", "publication_date": "2020-01-08", "author_affiliation_string": "Massachusetts Institute of Technology and", "paper_subject_labels": ["label_15", "label_16"]}
-{"paper_id": "Research Paper 9", "publication_date": "2020-01-09", "author_affiliation_string": "Massachusetts Institute of Technology)", "paper_subject_labels": ["label_17", "label_18"]}
-{"paper_id": "Research Paper 10", "publication_date": "2020-01-10", "author_affiliation_string": "Massachusetts Institute of Technology, Cambridge", "paper_subject_labels": ["label_19", "label_20"]}
-{"paper_id": "Research Paper 10", "publication_date": "2020-01-10", "author_affiliation_string": "MIT", "paper_subject_labels": ["label_19", "label_20"]}
-{"paper_id": "Research Paper 10", "publication_date": "2020-01-10", "author_affiliation_string": "MIGHT", "paper_subject_labels": ["label_19", "label_20"]}
-{"paper_id": "Harvard Paper 1", "publication_date": "2020-02-01", "author_affiliation_string": "Harvard Univ.", "paper_subject_labels": ["label_21", "label_22"]}
-{"paper_id": "Harvard Paper 2", "publication_date": "2020-02-02", "author_affiliation_string": "Harvard University", "paper_subject_labels": ["label_23", "label_24"]}
-{"paper_id": "Harvard Paper 3", "publication_date": "2020-02-03", "author_affiliation_string": "Harvard University, Cambridge, MA, USA", "paper_subject_labels": ["label_25", "label_26"]}
-{"paper_id": "Harvard Paper 4", "publication_date": "2020-02-04", "author_affiliation_string": "Harvard Univ, Cambridge", "paper_subject_labels": ["label_27", "label_28"]}
-{"paper_id": "Harvard Paper 5", "publication_date": "2020-02-05", "author_affiliation_string": "Harvard Medical School", "paper_subject_labels": ["label_29", "label_30"]}
-{"paper_id": "Harvard Paper 6", "publication_date": "2020-02-06", "author_affiliation_string": "Harvard Business School", "paper_subject_labels": ["label_31", "label_32"]}
-{"paper_id": "Harvard Paper 7", "publication_date": "2020-02-07", "author_affiliation_string": "Harvard Law School", "paper_subject_labels": ["label_33", "label_34"]}
-{"paper_id": "Harvard Paper 8", "publication_date": "2020-02-08", "author_affiliation_string": "Harvard College", "paper_subject_labels": ["label_35", "label_36"]}
-{"paper_id": "Harvard Paper 9", "publication_date": "2020-02-09", "author_affiliation_string": "Harvard Kennedy School", "paper_subject_labels": ["label_37", "label_38"]}
-{"paper_id": "Harvard Paper 10", "publication_date": "2020-02-10", "author_affiliation_string": "Harvard Graduate School of Education", "paper_subject_labels": ["label_39", "label_40"]}
-{"paper_id": "Harvard Paper 11", "publication_date": "2020-02-11", "author_affiliation_string": "Harvard School of Public Health", "paper_subject_labels": ["label_41", "label_42"]}
-{"paper_id": "Harvard Paper 12", "publication_date": "2020-02-12", "author_affiliation_string": "Harvard Divinity School", "paper_subject_labels": ["label_43", "label_44"]}
-{"paper_id": "Harvard Paper 13", "publication_date": "2020-02-13", "author_affiliation_string": "Harvard Extension School", "paper_subject_labels": ["label_45", "label_46"]}
-{"paper_id": "Harvard Paper 14", "publication_date": "2020-02-14", "author_affiliation_string": "Harvard University, Allston", "paper_subject_labels": ["label_47", "label_48"]}
-{"paper_id": "Harvard Paper 15", "publication_date": "2020-02-15", "author_affiliation_string": "Harvard University, Longwood", "paper_subject_labels": ["label_49", "label_50"]}
+{"id": "Research Paper 1", "created": "2020-01-01", "author_affiliation": "Mass. Inst. of Tech", "subject_labels": ["label_1", "label_2"]}
+{"id": "Research Paper 2", "created": "2020-01-02", "author_affiliation": "Mass. Inst. of Technology", "subject_labels": ["label_3", "label_4"]}
+{"id": "Research Paper 3", "created": "2020-01-03", "author_affiliation": "Massachusettes Institute of Technology, Cambridge, MA, USA", "subject_labels": ["label_5", "label_6"]}
+{"id": "Research Paper 4", "created": "2020-01-04", "author_affiliation": "Massachusetts Institute of Technolgy", "subject_labels": ["label_7", "label_8"]}
+{"id": "Research Paper 5", "created": "2020-01-05", "author_affiliation": "Massachusetts Institute of Technology Haystack Observatory", "subject_labels": ["label_9", "label_10"]}
+{"id": "Research Paper 6", "created": "2020-01-06", "author_affiliation": "Massachusetts Institute of Technology Lincoln Laboratory", "subject_labels": ["label_11", "label_12"]}
+{"id": "Research Paper 7", "created": "2020-01-07", "author_affiliation": "Massachusetts Institute of Technology USA", "subject_labels": ["label_13", "label_14"]}
+{"id": "Research Paper 8", "created": "2020-01-08", "author_affiliation": "Massachusetts Institute of Technology and", "subject_labels": ["label_15", "label_16"]}
+{"id": "Research Paper 9", "created": "2020-01-09", "author_affiliation": "Massachusetts Institute of Technology)", "subject_labels": ["label_17", "label_18"]}
+{"id": "Research Paper 10", "created": "2020-01-10", "author_affiliation": "Massachusetts Institute of Technology, Cambridge", "subject_labels": ["label_19", "label_20"]}
+{"id": "Research Paper 10", "created": "2020-01-10", "author_affiliation": "MIT", "subject_labels": ["label_19", "label_20"]}
+{"id": "Research Paper 10", "created": "2020-01-10", "author_affiliation": "MIGHT", "subject_labels": ["label_19", "label_20"]}
+{"id": "Harvard Paper 1", "created": "2020-02-01", "author_affiliation": "Harvard Univ.", "subject_labels": ["label_21", "label_22"]}
+{"id": "Harvard Paper 2", "created": "2020-02-02", "author_affiliation": "Harvard University", "subject_labels": ["label_23", "label_24"]}
+{"id": "Harvard Paper 3", "created": "2020-02-03", "author_affiliation": "Harvard University, Cambridge, MA, USA", "subject_labels": ["label_25", "label_26"]}
+{"id": "Harvard Paper 4", "created": "2020-02-04", "author_affiliation": "Harvard Univ, Cambridge", "subject_labels": ["label_27", "label_28"]}
+{"id": "Harvard Paper 5", "created": "2020-02-05", "author_affiliation": "Harvard Medical School", "subject_labels": ["label_29", "label_30"]}
+{"id": "Harvard Paper 6", "created": "2020-02-06", "author_affiliation": "Harvard Business School", "subject_labels": ["label_31", "label_32"]}
+{"id": "Harvard Paper 7", "created": "2020-02-07", "author_affiliation": "Harvard Law School", "subject_labels": ["label_33", "label_34"]}
+{"id": "Harvard Paper 8", "created": "2020-02-08", "author_affiliation": "Harvard College", "subject_labels": ["label_35", "label_36"]}
+{"id": "Harvard Paper 9", "created": "2020-02-09", "author_affiliation": "Harvard Kennedy School", "subject_labels": ["label_37", "label_38"]}
+{"id": "Harvard Paper 10", "created": "2020-02-10", "author_affiliation": "Harvard Graduate School of Education", "subject_labels": ["label_39", "label_40"]}
+{"id": "Harvard Paper 11", "created": "2020-02-11", "author_affiliation": "Harvard School of Public Health", "subject_labels": ["label_41", "label_42"]}
+{"id": "Harvard Paper 12", "created": "2020-02-12", "author_affiliation": "Harvard Divinity School", "subject_labels": ["label_43", "label_44"]}
+{"id": "Harvard Paper 13", "created": "2020-02-13", "author_affiliation": "Harvard Extension School", "subject_labels": ["label_45", "label_46"]}
+{"id": "Harvard Paper 14", "created": "2020-02-14", "author_affiliation": "Harvard University, Allston", "subject_labels": ["label_47", "label_48"]}
+{"id": "Harvard Paper 15", "created": "2020-02-15", "author_affiliation": "Harvard University, Longwood", "subject_labels": ["label_49", "label_50"]}
+
 
