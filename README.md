@@ -87,9 +87,9 @@ If you do not have Node.js installed, please download through the [Node.js websi
 
 4. **Prepare Your Input File**
 
-   - Make sure your input file is in **JSONL format** (each line is a JSON object).
-   - Place your input file in the same folder as the script
-   - FYI - `exampleInput.jsonl` exists in the directory for use. I used this file to test my script, so please refer to this for reference!
+   - Make sure your input file is in **JSONL format**.
+   - Place your input file in the same folder as the script. Ensure that the file is not extremely large. I noticed that `eto_swe_interview_data.jsonl` was more than 50 MB ...
+   - FYI - `exampleInput.jsonl` exists in the directory for use. I used this file to test my script, so please refer to this for reference if you need to!!!
 
 5. **Run the Script**
 
@@ -102,7 +102,7 @@ If you do not have Node.js installed, please download through the [Node.js websi
    - With threshold between 0.0 - 1.0 (optional):
 
    ```
-   node index.js exampleInput.jsonl output.csv 0.8
+   node index.js exampleInput.jsonl output.csv 0.4
    ```
 
    - The threshold is a number between 0 and 1 (default is 0.7)
