@@ -63,7 +63,7 @@ try {
     }
   }
 
-  console.log('Processing...');
+  console.log('Processing... Larger the input, longer the wait...');
 
   // Normalize
   const records = jsonObjects.map(({ author_affiliation }) => {
@@ -88,14 +88,13 @@ try {
   console.log('\nSome normalization stats:');
   const cache = getNormalizationCache();
 
-  console.log(`Number of original strings: ${records.length}`);
-  console.log(`Number of normalized values: ${cache.size}`);
-  console.log(
-    `Estimated reduction ratio: ${(
-      (1 - cache.size / records.length) *
-      100
-    ).toFixed(2)}%`
-  );
+  console.log(`Number of original affiliations: ${records.length}`);
+  console.log(`Number of normalized affiliations: ${cache.size}`);
+  const reductionPercentage = (
+    ((records.length - cache.size) / records.length) *
+    100
+  ).toFixed(2);
+  console.log(`Reduced original affiliations by: ${reductionPercentage}%`);
 } catch (error) {
   console.error('Error:', error.message);
   process.exit(1);

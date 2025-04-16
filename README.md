@@ -2,16 +2,16 @@
 
 ## Introduction
 
-Note: Please use your IDE and open this file in Preview for readability and formatting. Eg. VSCode -> Right click README.md tab -> Open Preview
+Note: Please use your favorite IDE and open this file in Preview for readability and formatting. Eg. VSCode -> Right click README.md tab -> Open Preview
 
 Hello CSET Team - my name is James, and I'm a software engineer at **WillowTree**. Thank you for the opportunity to partake in this take-home project!
 I chose to complete **Option 1: Data Normalization** exercise. The second option seemed simpler, but I've never looked much into normalization of data
 in my professional experience so I decided to give it a go. It took a little bit of time to do my due diligence on some common string normalization
-techniques and weighing out the pros and cons, but it was a fun exercise to try out that was more data-centric.
+techniques and weighing out the pros and cons, but it was a fun exercise to try out that was more data-centric than what I'm used to.
 
 ## Technologies Used
 
-When I first read the prompt, I was attracted to writing a simple Python script since it would've been a bit less overhead for configuration setup compared to the technologies that I've been using recently with - such as **Node.js** or **.NET**. However, I felt more comfortable with the JavaScript syntax so I decided to use Node. I apologize if you do not have Node.js installed already to evaluate this script.
+When I first read the prompt, I was attracted to writing a simple Python script since it would've been a bit less overhead for configuration compared to the technologies that I've been using recently with - such as **Node.js** or **.NET**. However, I felt more comfortable with the JavaScript syntax so I decided to use Node. I apologize if you do not have Node.js installed already to evaluate this script.
 
 #### Packages:
 
@@ -34,10 +34,10 @@ Here's a basic [explanation](https://srinivas-kulkarni.medium.com/jaro-winkler-v
 **Levenshtein Distance**: String metric for measuring the difference between two sequences. Between two strings, we count the minimum number of single char edits, which includes deletion, insertion, substitution, required to change one string into the other. Then we do
 1 - (LD value) / (max length of two strings) to get the similarity value.
 
-**Jaro-Winkler**: String metric for measuring characters between two sequences in common, being no more than half the length of the longest string. It also takes into account of consideration for transpositions (char movements). The calculation is a bit more complex, but
+**Jaro-Winkler**: String metric for measuring characters between two sequences in common, being no more than half the length of the longest string. It also takes into account of consideration for transpositions. The calculation is a bit more complex, but
 the idea of similarity value is similar to the Levenshtein distance algorithm.
 
-I decided to try both algorithms to see which method would work best with affiliated author strings. For the Levenshtein Distance algorithm, I implemented my own JavaScript function similar to [this](https://www.30secondsofcode.org/js/s/levenshtein-distance/) algorithm, and tried using [this](https://www.npmjs.com/package/jaro-winkler) npm package for the Jaro-Winkler algorithm. With the given MIT affiliation examples from the prompt, the results varied. Leveraging JUST these algorithms along with the caching method, the Levenshtein Distance formula looked more appealing to me, as it felt like it was just strict enough to distinguish two strings that should seem like they should map to two different normalized strings, whereas Jaro-Winkler seemed more forgiving with the same threshold values set and better for shorter strings. For example, for a string like `MIT`, Jaro-Winkler would be better at finding similarity to a string like `mass inst of tech`, compared to Levenshtein Distance. Another example - I would personally think that `Massachusetts Institute of Technology Haystack Observatory` should be separate from `Massachusettes Institute of Technology, Cambridge, MA, USA`, so I would lean towards the Levenshtein distance algorithm.
+I decided to try both algorithms to see which method would work best with affiliated author strings. For the Levenshtein Distance algorithm, I implemented my own JavaScript function similar to [this](https://www.30secondsofcode.org/js/s/levenshtein-distance/) algorithm, and tried using [this](https://www.npmjs.com/package/jaro-winkler) npm package for the Jaro-Winkler algorithm. With the given MIT affiliation example from the prompt, the results varied (The `eto_swe_interview.json` file was too large to test, so I made my own). Leveraging JUST these algorithms along with the caching method, the Levenshtein Distance formula looked more appealing to me, as it felt like it was just strict enough to distinguish two strings that should seem like they should map to two different normalized strings, whereas Jaro-Winkler seemed more forgiving with the same threshold values set and better for shorter strings. For example - given the same threshold value - for a string like `MIT`, Jaro-Winkler would be better at finding similarity to a string like `mass inst of tech`, compared to Levenshtein Distance. Another example - I would personally think that `Massachusetts Institute of Technology Haystack Observatory` should be separate from `Massachusettes Institute of Technology, Cambridge, MA, USA`, so I would lean towards the Levenshtein distance algorithm.
 
 I did, however, add some options to the program to allow a little bit more exactness in the functionality.
 
@@ -56,13 +56,19 @@ the dynamic caching method would work far better since we already have known set
 
 ### Conclusion
 
-This exercise provided valuable insights into data normalization techniques and their practical applications. The implementation demonstrates how string similarity algorithms can effectively standardize diverse data formats while maintaining meaningful relationships between entries. The solution's flexibility through adjustable thresholds allows for fine-tuning the balance between precision and recall in matching similar strings. There are improvements that could be made with more time and additional data for testing. One improvement would be formatting the normalized versions of the original affiliation strings better when creating the output CSV file, making it more readable and applicable for real-world database use cases. We could also optimize the program to handle extremely large datasets or extract common words like "the," "for," "and," "a," etc., before running our algorithms for better fuzzy matching. There are many ways to improve with more time. Of course, the threshold values can be adjusted to be more forgiving or strict, and we could debate which algorithm performs better with larger datasets. Overall, this project successfully addresses the challenge of standardizing affiliation strings while providing a foundation for more complex data normalization tasks. Given the 3-5 hour timeframe for this exercise, I believe this approach is suitable. This was a fun exercise. Thank you!
+This exercise offered valuable insights into data normalization techniques and their practical applications. The implementation showcases how string similarity algorithms can effectively standardize varied data formats while preserving meaningful relationships between entries. With adjustable thresholds, the solution provides flexibility to fine-tune the balance between precision and recall when matching similar strings.
 
-## How to Run the Script
+With more time and additional data for testing, there’s definitely room for improvement. One area would be improving the formatting of normalized affiliation strings in the output CSV to enhance readability and make it more suitable for real-world database use. We could also optimize the program for handling very large datasets or improve fuzzy matching by filtering out common words like "the," "for," "and," "a," etc., before processing.
+
+There’s no shortage of ways to build on this. Threshold values could be tuned to be either more forgiving or more strict, and we could explore which algorithms perform best at scale. Overall, this project meets the challenge of standardizing affiliation strings and lays a solid foundation for more advanced data normalization efforts.
+
+Given the 3–5 hour window for this task, I’m fairly happy with this approach. It was a fun exercise—thank you!
+
+## How to run the Script
 
 If you do not have Node.js installed, please download through the [Node.js website](https://nodejs.org/en/download).
 
-1. **Open Terminal/Command Prompt - Skip if you are familiar with running scripts!**
+1. **Open Terminal/Command Prompt - Skip if you are familiar with cli!**
 
    - Open terminal
 
