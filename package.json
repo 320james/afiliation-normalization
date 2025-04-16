@@ -1,0 +1,19 @@
+{
+  "name": "affiliation-normalizer",
+  "version": "1.0.0",
+  "description": "Normalize affiliation strings",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "jaro-winkler": "^0.2.8"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
